@@ -1,15 +1,12 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.1'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.springframework.boot' version '2.5.7'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-
-java {
-	sourceCompatibility = '17'
-}
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -24,16 +21,15 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
+
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	compileOnly 'org.projectlombok:lombok:1.18.26'
 	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.0'
-	implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
-	implementation 'com.sun.xml.bind:jaxb-impl:4.0.0'
-	implementation 'com.sun.xml.bind:jaxb-core:4.0.0'
 
 }
 
