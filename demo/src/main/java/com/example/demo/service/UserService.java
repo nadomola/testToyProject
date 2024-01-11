@@ -13,20 +13,18 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     public UserEntity create(final UserEntity userEntity){
-        if(userEntity ==null ||userEntity.getEmail()==null){
-            throw new RuntimeException("Invalid arguments");
+        if(){
+
         }
-        final String email = userEntity.getEmail();
+        final String email = ;
         if(userRepository.existsByEmail(email)){
             log.warn("Email already exists {}", email);
-            throw new RuntimeException("Email already exists");
         }
-        return userRepository.save(userEntity);
+        return ;
     }
 
     public UserEntity getByCredentials(final String email, final String password,
                                        PasswordEncoder encoder) {
-        //return userRepository.findByEmailAndPassword(email, password);
 
         final UserEntity originalUser = userRepository.findByEmail(email);
 

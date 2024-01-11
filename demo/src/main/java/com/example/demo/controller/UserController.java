@@ -29,20 +29,7 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO){
         try {
-            UserEntity user = UserEntity.builder()
-                    .email(userDTO.getEmail())
-                    .username(userDTO.getUsername())
-                    .password(passwordEncoder.encode(userDTO.getPassword()))
-                    .build();
-            //서비스를 이용해 리포지터리에 사용자 저장
-            UserEntity registeredUser = userService.create(user);
-            UserDTO responseUserDTO = UserDTO.builder()
-                    .email(registeredUser.getEmail())
-                    .id(registeredUser.getId())
-                    .username(registeredUser.getUsername())
-                    .build();
 
-            return ResponseEntity.ok().body(responseUserDTO);
         }catch (Exception e){
             ResponseDTO responseDTO = ResponseDTO.builder().error(e.getMessage()).build();
             return ResponseEntity
@@ -58,22 +45,9 @@ public class UserController {
                 userDTO.getPassword(),
                 passwordEncoder
         );
-        if( user != null){
-            final String token = tokenProvider.create(user);
-            final UserDTO responseUserDTO = UserDTO.builder()
-                    .email(user.getEmail())
-                    .id(user.getId())
-                    .token(token)
-                    .build();
-            return ResponseEntity.ok().body(responseUserDTO);
+        if( user != null){s
         }
         else{
-            ResponseDTO responseDTO = ResponseDTO.builder()
-                    .error("Login failed").build();
-
-            return ResponseEntity
-                    .badRequest()
-                    .body(responseDTO);
         }
 
     }
